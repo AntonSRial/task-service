@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "9c2ae9c2-87c9-434a-a3fc-ebb50dc0d40c",
+		"name": "Task Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20466419"
+	},
+	"item": [
+		{
+			"name": "Find",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/task-service-rest-api/v1.0/task?productId=35455&brandId=1&applicationDate=2020-06-16T21:00:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task-service-rest-api",
+						"v1.0",
+						"task"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "brandId",
+							"value": "1"
+						},
+						{
+							"key": "applicationDate",
+							"value": "2020-06-16T21:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brandId\": \"1\",\r\n    \"startDate\": \"2020-08-08T00:00:00Z\",\r\n    \"enDate\": \"2020-12-31T22:59:59.000+00:00\",\r\n    \"taskList\": \"1\",\r\n    \"productId\": \"35455\",\r\n    \"priority\": \"0\",\r\n    \"task\": 12.34,\r\n    \"curr\": \"EUR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/task-service-rest-api/v1.0/task",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"task-service-rest-api",
+						"v1.0",
+						"task"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
