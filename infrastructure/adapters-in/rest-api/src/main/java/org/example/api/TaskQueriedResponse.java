@@ -6,21 +6,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaskQueriedResponse {
-    private String brandId;
+    private String title;
 
-    private Date startDate;
+    private Date dueDate;
 
-    private Date enDate;
+    private String description;
 
-    private String priceList;
+    private List<String> tags;
 
-    private String productId;
-
-    private String price;
+    private TaskStatus status;
 
 }

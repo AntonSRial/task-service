@@ -5,7 +5,7 @@ import org.example.application.cqrs.Query;
 
 import java.util.Date;
 
-public record FindTaskCreatedQuery(String productId, String brandId, Date applicationDate) implements Query<FoundTaskCreated> {
+public record FindTaskCreatedQuery(int page, int size) implements Query<FoundTaskCreated> {
 
 
 }

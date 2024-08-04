@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("${api.version}/price")
+@RequestMapping("${api.version}/task")
 public class TaskAPI {
     @Autowired
     CreateTaskCommandHandler createTaskCommandHandler;
@@ -31,20 +31,20 @@ public class TaskAPI {
     @PostMapping(path = "",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<TaskCreatedResponse> create(@RequestBody TaskRequest price) {
-        CreateTaskCommand createTaskCommand = new CreateTaskCommand(price.getBrandId(), price.getStartDate(), price.getEnDate(), price.getPriceList(), price.getProductId(), price.getPriority(), price.getPrice(), price.getCurr());
+    ResponseEntity<TaskCreatedResponse> create(@RequestBody TaskRequest task) {
+        CreateTaskCommand createTaskCommand = new CreateTaskCommand(task.getTitle(), task.getDueDate(), task.getDescription(), task.getTags(), null);
 
         createTaskCommandHandler.handle(createTaskCommand);
-        return new ResponseEntity<>(new TaskCreatedResponse(price.getBrandId(), price.getStartDate(), price.getEnDate(), price.getPriceList(), price.getProductId(), price.getPriority(), price.getPrice(), price.getCurr()), HttpStatus.CREATED);
+        return new ResponseEntity<>(new TaskCreatedResponse(task.getTitle(), task.getDueDate(), task.getDescription(), task.getTags(), task.getStatus()), HttpStatus.CREATED);
     }
 
     @GetMapping("")
-    ResponseEntity<List<TaskQueriedResponse>> list(String productId, String brandId, @RequestParam(name = "applicationDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") Date applicationDate) {
+    ResponseEntity<List<TaskQueriedResponse>> list(@RequestParam(name = "page", defaultValue = "0") int page, @RequestParam(name = "size", defaultValue = "10") int size) {
 
-        FindTaskCreatedQuery query = new FindTaskCreatedQuery(productId, brandId, applicationDate);
+        FindTaskCreatedQuery query = new FindTaskCreatedQuery(page, size);
 
         return ResponseEntity.ok(findTaskCreatedQueryHandler.handle(query).foundTaskCreatedList().stream()
-                .map(item -> new TaskQueriedResponse(item.brandId(), item.startDate(), item.endDate(), item.priceList(), item.productId(), item.price() +item.curr()))
+                .map(item -> new TaskQueriedResponse(item.title(), item.dueDate(), item.description(), item.tags(), null))
                 .collect(Collectors.toList()));
     }
 

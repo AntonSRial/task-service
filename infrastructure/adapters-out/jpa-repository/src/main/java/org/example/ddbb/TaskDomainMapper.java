@@ -13,7 +13,7 @@ public interface TaskDomainMapper {
 
     TaskDomain taskEntityToTaskDomain(TaskEntity taskEntity);
 
-    TaskEntity taskDomainToTaskEntity(TaskDomain price);
+    TaskEntity taskDomainToTaskEntity(TaskDomain task);
 
     List<TaskDomain> taskEntityListToTaskDomainList(List<TaskEntity> taskEntityList);
 

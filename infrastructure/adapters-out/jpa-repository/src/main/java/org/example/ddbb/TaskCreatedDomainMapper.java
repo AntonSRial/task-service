@@ -13,7 +13,7 @@ public interface TaskCreatedDomainMapper {
 
     TaskCreatedDomain taskEntityToQueryTaskDomain(TaskEntity TaskEntity);
 
-    TaskEntity queryPriceDomainToPriceEntity(TaskCreatedDomain existingPrice);
+    TaskEntity queryTaskDomainToTaskEntity(TaskCreatedDomain existingPrice);
 
     List<TaskCreatedDomain> taskEntityListToQueryTaskDomainList(List<TaskEntity> taskEntityList);
 

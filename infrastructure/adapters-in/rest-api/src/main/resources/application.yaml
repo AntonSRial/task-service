@@ -3,7 +3,7 @@ api:
 server:
   port: 8080
   servlet:
-    context-path: /price-service-rest-api/
+    context-path: /task-service-rest-api/
   error:
     include-exception: true
     include-stacktrace: always

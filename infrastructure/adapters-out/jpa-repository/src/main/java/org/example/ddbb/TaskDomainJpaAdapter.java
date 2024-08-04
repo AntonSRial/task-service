@@ -23,8 +23,8 @@ public class TaskDomainJpaAdapter implements TaskDomainPersistencePort, TaskCrea
     }
 
     @Override
-    public List<TaskCreatedDomain> find(String productId, String brandId, Date applicationDate) {
-        List<TaskEntity> taskEntityList = taskRepository.findApplicablePrices(productId, brandId, applicationDate);
+    public List<TaskCreatedDomain> find(int page, int size) {
+        List<TaskEntity> taskEntityList = taskRepository.findApplicablePrices(null, null, null);
         return TaskCreatedDomainMapper.INSTANCE.taskEntityListToQueryTaskDomainList(taskEntityList);
     }
 

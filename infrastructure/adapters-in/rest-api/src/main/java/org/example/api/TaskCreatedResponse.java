@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,19 +14,13 @@ import java.util.Date;
 @AllArgsConstructor
 public class TaskCreatedResponse {
 
-    private String brandId;
+    private String title;
 
-    private Date startDate;
+    private Date dueDate;
 
-    private Date enDate;
+    private String description;
 
-    private String priceList;
+    private List<String> tags;
 
-    private String productId;
-
-    private int priority;
-
-    private double price;
-
-    private String curr;
+    private TaskStatus status;
 }

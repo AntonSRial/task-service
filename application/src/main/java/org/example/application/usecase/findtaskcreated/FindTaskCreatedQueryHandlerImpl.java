@@ -17,21 +17,10 @@ public class FindTaskCreatedQueryHandlerImpl implements FindTaskCreatedQueryHand
 
     @Override
     public FoundTaskList handle(FindTaskCreatedQuery query) {
-        List<FoundTaskCreated> result  =  taskCreatedDomainPersistencePort.find(query.productId(), query.brandId(), query.applicationDate()).parallelStream().map(item -> new FoundTaskCreated(
-                item.getBrandId(), item.getStartDate(), item.getEnDate(), item.getPriceList(), item.getProductId(), item.getPriority(), item.getPrice(), item.getCurr())).toList();
+        List<FoundTaskCreated> result  =  taskCreatedDomainPersistencePort.find(query.page(), query.size()).parallelStream().map(item -> new FoundTaskCreated(
+                item.getTitle(), item.getDueDate(), item.getDescription(), item.getTags(), null)).toList();
 
-        if(query.applicationDate() == null) {
-            return new FoundTaskList(result);
-        }
-        List<FoundTaskCreated> filteredList = result.stream()
-                .filter(item -> result.stream()
-                        .filter(otherItem -> Objects.equals(item.productId(), otherItem.productId()))
-                        .mapToDouble(FoundTaskCreated::priority)
-                        .max()
-                        .orElse(-1) == item.priority())
-                .collect(Collectors.toList());
-
-        return new FoundTaskList(filteredList);
+        return new FoundTaskList(result);
     }
 
 }

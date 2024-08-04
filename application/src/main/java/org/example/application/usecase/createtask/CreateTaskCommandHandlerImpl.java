@@ -15,7 +15,7 @@ public class CreateTaskCommandHandlerImpl implements CreateTaskCommandHandler {
 
     @Override
     public void handle(CreateTaskCommand command) {
-        TaskDomain taskDomain = new TaskDomain(command.brandId(), command.startDate(), command.enDate(), command.priceList(), command.productId(), command.priority(), command.price(), command.curr());
+        TaskDomain taskDomain = new TaskDomain(command.title(), command.dueDate(), command.description(), command.tags(), null);
         taskPersistencePort.save(taskDomain);
     }
 

@@ -1,6 +1,13 @@
 package org.example.application.usecase.findtaskcreated;
 
-import java.util.Date;
+import org.example.application.usecase.TaskStatus;
 
-public record FoundTaskCreated(String brandId, Date startDate, Date endDate, String priceList, String productId, int priority, double price, String curr) {
+import java.util.Date;
+import java.util.List;
+
+public record FoundTaskCreated(String title,
+                               Date dueDate,
+                               String description,
+                               List<String> tags,
+                               TaskStatus status) {
 }
