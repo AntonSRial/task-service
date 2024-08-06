@@ -1,6 +1,7 @@
 package org.example.application.usecase.createtask;
 
 
+import org.example.application.mapper.TaskMapper;
 import org.example.domain.model.taskdomain.TaskDomain;
 import org.example.domain.model.taskdomain.TaskDomainPersistencePort;
 
@@ -15,7 +16,7 @@ public class CreateTaskCommandHandlerImpl implements CreateTaskCommandHandler {
 
     @Override
     public void handle(CreateTaskCommand command) {
-        TaskDomain taskDomain = new TaskDomain(command.title(), command.dueDate(), command.description(), command.tags(), null);
+        TaskDomain taskDomain = TaskMapper.INSTANCE.taskCommandToTaskDomain(command);
         taskPersistencePort.save(taskDomain);
     }
 

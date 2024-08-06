@@ -11,11 +11,10 @@ public interface TaskCreatedDomainMapper {
 
     TaskCreatedDomainMapper INSTANCE = Mappers.getMapper(TaskCreatedDomainMapper.class);
 
-    TaskCreatedDomain taskEntityToQueryTaskDomain(TaskEntity TaskEntity);
+    TaskCreatedDomain taskEntityToQueryTaskDomain(TaskEntity taskEntity);
 
-    TaskEntity queryTaskDomainToTaskEntity(TaskCreatedDomain existingPrice);
+    TaskEntity queryTaskDomainToTaskEntity(TaskCreatedDomain existingTask);
 
     List<TaskCreatedDomain> taskEntityListToQueryTaskDomainList(List<TaskEntity> taskEntityList);
 
-    List<TaskEntity> queryTaskDomainListToTaskEntityList(List<TaskCreatedDomain> existingPriceList);
 }

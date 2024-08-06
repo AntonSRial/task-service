@@ -14,6 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class TaskCreatedResponse {
 
+    private String id;
+
     private String title;
 
     private Date dueDate;

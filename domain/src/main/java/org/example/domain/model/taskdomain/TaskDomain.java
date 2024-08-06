@@ -15,6 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 public class TaskDomain {
 
+    private String id;
+
     private String title;
 
     private Date dueDate;

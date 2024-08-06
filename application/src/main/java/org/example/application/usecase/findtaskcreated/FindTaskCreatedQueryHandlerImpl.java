@@ -1,6 +1,10 @@
 package org.example.application.usecase.findtaskcreated;
 
 
+import org.example.application.mapper.TaskMapper;
+import org.example.domain.model.DomainList;
+import org.example.domain.model.PageData;
+import org.example.domain.model.taskcreateddomain.TaskCreatedDomain;
 import org.example.domain.model.taskcreateddomain.TaskCreatedDomainPersistencePort;
 
 import java.util.List;
@@ -17,10 +21,13 @@ public class FindTaskCreatedQueryHandlerImpl implements FindTaskCreatedQueryHand
 
     @Override
     public FoundTaskList handle(FindTaskCreatedQuery query) {
-        List<FoundTaskCreated> result  =  taskCreatedDomainPersistencePort.find(query.page(), query.size()).parallelStream().map(item -> new FoundTaskCreated(
-                item.getTitle(), item.getDueDate(), item.getDescription(), item.getTags(), null)).toList();
+        PageData pageData = new PageData(query.size(), query.page());
 
-        return new FoundTaskList(result);
+        DomainList<TaskCreatedDomain> taskList = taskCreatedDomainPersistencePort.find(pageData);
+
+        List<FoundTaskCreated> result = taskList.getLista().stream().map(TaskMapper.INSTANCE::taskDomainToFoundTask).toList();
+
+        return new FoundTaskList(result, taskList.getTotal());
     }
 
 }

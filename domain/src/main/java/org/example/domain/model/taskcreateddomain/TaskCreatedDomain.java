@@ -14,6 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaskCreatedDomain {
+
+    private String id;
+
     private String title;
 
     private Date dueDate;

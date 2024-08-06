@@ -27,11 +27,6 @@
         </dependency>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>task-service-jpa-repository</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
             <artifactId>task-service-application</artifactId>
             <version>${project.version}</version>
         </dependency>

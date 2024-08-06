@@ -14,7 +14,7 @@
     <module>domain</module>
     <module>infrastructure/launcher</module>
     <module>infrastructure/adapters-in/rest-api</module>
-    <module>infrastructure/adapters-out/jpa-repository</module>
+    <module>infrastructure/adapters-out/mongodb-repository</module>
   </modules>
 
   <properties>

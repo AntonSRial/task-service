@@ -7,7 +7,8 @@ import org.example.application.usecase.TaskStatus;
 import java.util.Date;
 import java.util.List;
 
-public record CreateTaskCommand(String title,
+public record CreateTaskCommand(String id,
+                                String title,
                                 Date dueDate,
                                 String description,
                                 List<String> tags,

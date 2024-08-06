@@ -1,11 +1,14 @@
 package org.example.domain.model.taskcreateddomain;
 
 
+import org.example.domain.model.DomainList;
+import org.example.domain.model.PageData;
+
 import java.util.Date;
 import java.util.List;
 
 public interface TaskCreatedDomainPersistencePort {
 
-    List<TaskCreatedDomain> find(int page, int size);
+    DomainList<TaskCreatedDomain> find(PageData pageData);
 
 }

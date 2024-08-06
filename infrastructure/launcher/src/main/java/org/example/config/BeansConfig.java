@@ -11,16 +11,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("org.example.task-service")
+@ComponentScan("org.example")
 public class BeansConfig {
 
 	@Bean
-	CreateTaskCommandHandler getGreetingPriceService(TaskDomainPersistencePort outputPort) {
+	CreateTaskCommandHandler getCreateTaskService(TaskDomainPersistencePort outputPort) {
 		return new CreateTaskCommandHandlerImpl(outputPort);
 	}
 
 	@Bean
-	FindTaskCreatedQueryHandler getListExistingPriceService(TaskCreatedDomainPersistencePort outputPort) {
+	FindTaskCreatedQueryHandler getFindTaskService(TaskCreatedDomainPersistencePort outputPort) {
 		return new FindTaskCreatedQueryHandlerImpl(outputPort);
 	}
 
