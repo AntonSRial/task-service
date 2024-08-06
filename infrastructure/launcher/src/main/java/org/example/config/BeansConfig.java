@@ -1,27 +1,32 @@
 package org.example.config;
 
+import org.example.api.helper.UuidGeneratorHelper;
 import org.example.application.usecase.createtask.CreateTaskCommandHandler;
 import org.example.application.usecase.createtask.CreateTaskCommandHandlerImpl;
 import org.example.application.usecase.findtaskcreated.FindTaskCreatedQueryHandler;
 import org.example.application.usecase.findtaskcreated.FindTaskCreatedQueryHandlerImpl;
-import org.example.domain.model.taskcreateddomain.TaskCreatedDomainPersistencePort;
-import org.example.domain.model.taskdomain.TaskDomainPersistencePort;
+import org.example.domain.model.taskcreateddomain.TaskReadPort;
+import org.example.domain.model.taskdomain.TaskWritePort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("org.example")
+@ComponentScan("org.example.task-service")
 public class BeansConfig {
 
 	@Bean
-	CreateTaskCommandHandler getCreateTaskService(TaskDomainPersistencePort outputPort) {
+	CreateTaskCommandHandler createTaskCommandHandler(TaskWritePort outputPort) {
 		return new CreateTaskCommandHandlerImpl(outputPort);
 	}
 
 	@Bean
-	FindTaskCreatedQueryHandler getFindTaskService(TaskCreatedDomainPersistencePort outputPort) {
+	FindTaskCreatedQueryHandler findTaskCreatedQueryHandler(TaskReadPort outputPort) {
 		return new FindTaskCreatedQueryHandlerImpl(outputPort);
 	}
 
+	@Bean
+	UuidGeneratorHelper uuidGenerator() {
+		return UuidGeneratorHelper.random();
+	}
 }

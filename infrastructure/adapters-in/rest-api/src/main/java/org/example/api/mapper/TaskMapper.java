@@ -1,5 +1,8 @@
-package org.example.api;
+package org.example.api.mapper;
 
+import org.example.api.model.TaskCreatedResponse;
+import org.example.api.model.TaskQueriedResponse;
+import org.example.api.model.TaskRequest;
 import org.example.application.usecase.createtask.CreateTaskCommand;
 import org.example.application.usecase.findtaskcreated.FoundTaskCreated;
 import org.mapstruct.Mapper;
@@ -14,7 +17,7 @@ public interface TaskMapper {
     CreateTaskCommand taskRequestToCreateTaskCommand(TaskRequest taskRequest, String id);
 
 	@Mapping(target = "id", source = "id")
-	TaskCreatedResponse taskRequestToTaskResponse(TaskRequest taskRequest, String id);
+    TaskCreatedResponse taskRequestToTaskResponse(TaskRequest taskRequest, String id);
 
     TaskQueriedResponse taskFoundToTaskQueriedResponse (FoundTaskCreated foundTaskCreated);
 

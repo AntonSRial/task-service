@@ -1,4 +1,4 @@
-package org.example.api;
+package org.example.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

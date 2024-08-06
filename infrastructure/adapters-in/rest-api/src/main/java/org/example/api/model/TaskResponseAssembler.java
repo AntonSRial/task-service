@@ -1,6 +1,8 @@
-package org.example.api;
+package org.example.api.model;
 
 
+import org.example.api.TaskAPI;
+import org.example.api.mapper.TaskMapper;
 import org.example.application.usecase.findtaskcreated.FoundTaskCreated;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package org.example.domain.model.taskdomain;
 
-public interface TaskDomainPersistencePort {
+public interface TaskWritePort {
 
     void save(TaskDomain task);
 

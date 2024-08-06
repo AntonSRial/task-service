@@ -2,6 +2,11 @@ package org.example.api;
 
 import io.swagger.v3.oas.annotations.Parameter;
 import org.example.api.helper.UuidGeneratorHelper;
+import org.example.api.mapper.TaskMapper;
+import org.example.api.model.TaskCreatedResponse;
+import org.example.api.model.TaskQueriedResponse;
+import org.example.api.model.TaskRequest;
+import org.example.api.model.TaskResponseAssembler;
 import org.example.application.usecase.createtask.CreateTaskCommand;
 import org.example.application.usecase.createtask.CreateTaskCommandHandler;
 import org.example.application.usecase.findtaskcreated.FindTaskCreatedQuery;
@@ -14,23 +19,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("${api.version}/task")
@@ -65,7 +61,7 @@ public class TaskAPI {
     @PageableAsQueryParam
     ResponseEntity<PagedModel<TaskQueriedResponse>> find(@Valid @Parameter(hidden = true) Pageable pageable) {
 
-        FindTaskCreatedQuery query = new FindTaskCreatedQuery(pageable.page(), pageable.page());
+        FindTaskCreatedQuery query = new FindTaskCreatedQuery(pageable.page(), pageable.size());
 
         FoundTaskList taskList = findTaskCreatedQueryHandler.handle(query);
 

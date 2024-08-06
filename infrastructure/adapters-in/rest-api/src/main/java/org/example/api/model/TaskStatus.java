@@ -1,4 +1,4 @@
-package org.example.api;
+package org.example.api.model;
 
 public enum TaskStatus {
     CREATED,
