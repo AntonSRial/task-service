@@ -1,6 +1,5 @@
 package org.example.api;
 
-import io.swagger.v3.oas.annotations.Parameter;
 import org.example.api.helper.UuidGeneratorHelper;
 import org.example.api.mapper.TaskMapper;
 import org.example.api.model.TaskCreatedResponse;
@@ -25,8 +24,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("${api.version}/task")
@@ -59,7 +56,11 @@ public class TaskAPI {
 
     @GetMapping(value = "", produces = { MediaType.APPLICATION_JSON_VALUE, MediaTypes.HAL_JSON_VALUE })
     @PageableAsQueryParam
-    ResponseEntity<PagedModel<TaskQueriedResponse>> find(@Valid @Parameter(hidden = true) Pageable pageable) {
+    public ResponseEntity<PagedModel<TaskQueriedResponse>> find(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size) {
+
+        Pageable pageable = new Pageable(size, page);
 
         FindTaskCreatedQuery query = new FindTaskCreatedQuery(pageable.page(), pageable.size());
 
